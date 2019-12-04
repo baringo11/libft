@@ -1,42 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbaringo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 10:45:34 by jbaringo          #+#    #+#             */
-/*   Updated: 2019/11/25 13:38:49 by jbaringo         ###   ########.fr       */
+/*   Created: 2019/11/26 09:51:30 by jbaringo          #+#    #+#             */
+/*   Updated: 2019/11/26 11:56:06 by jbaringo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void const *content)
 {
-	size_t	j;
-	size_t	i;
-	char	*str;
+	t_list	*head;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!(head = (t_list*)malloc(sizeof(t_list))))
 		return (NULL);
-	i = ft_strlen(s1);
-	i += ft_strlen(s2);
-	if (!(str = malloc((i + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
+	head->content = (void*)content;
+	head->next = NULL;
+	return (head);
 }

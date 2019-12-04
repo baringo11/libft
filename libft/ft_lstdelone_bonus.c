@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbaringo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/21 10:45:34 by jbaringo          #+#    #+#             */
-/*   Updated: 2019/11/25 13:38:49 by jbaringo         ###   ########.fr       */
+/*   Created: 2019/11/26 12:41:11 by jbaringo          #+#    #+#             */
+/*   Updated: 2019/11/26 14:25:50 by jbaringo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	size_t	j;
-	size_t	i;
-	char	*str;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	i = ft_strlen(s1);
-	i += ft_strlen(s2);
-	if (!(str = malloc((i + 1) * sizeof(char))))
-		return (NULL);
-	i = 0;
-	while (s1[i])
+	if (lst)
 	{
-		str[i] = s1[i];
-		i++;
+		del((lst)->content);
+		free(lst);
+		lst = NULL;
 	}
-	j = 0;
-	while (s2[j])
-	{
-		str[i] = s2[j];
-		i++;
-		j++;
-	}
-	str[i] = '\0';
-	return (str);
 }
